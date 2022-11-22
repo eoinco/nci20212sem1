@@ -1,5 +1,6 @@
 from web3 import Web3
 from decouple import config
+from wallet import *
 
 infuraUrl= config('INFURA_URL')
 contractAddress = Web3.toChecksumAddress(config('CONTRACT_ADDRESS'))
@@ -65,7 +66,7 @@ def tokenTransfer(address):
             })
 
             #  sign the tx
-            signed_tx = web3.eth.account.sign_transaction(transaction, privateKey)
+            signed_tx = web3.eth.account.sign_transaction(transaction, getPrivateKey())
 
             #  submit the tx
             tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
@@ -109,3 +110,5 @@ def ethTransfer(address, amountInEther):
         print('tx mined')
 
 # ethTransfer("0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C", "0.05")
+
+tokenTransfer("0xac4FafdA6A3A6B48b4cDC2a896acf8D104C81d6C")
