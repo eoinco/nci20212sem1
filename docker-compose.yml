@@ -6,3 +6,12 @@ services:
     dockerfile: Dockerfile
    ports:
     - 8090:8080
+ipfsserver:
+   image: ipfs/go-ipfs:latest
+   container_name: ipfs-host
+   ports:
+     - 4001:4001
+     - 5001:5001
+     - 8100:8080
+   volumes:
+     - /home/eoin/projects/college/2022/python/ipfs:/export
