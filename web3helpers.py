@@ -66,7 +66,7 @@ def tokenTransfer(address):
             })
 
             #  sign the tx
-            signed_tx = web3.eth.account.sign_transaction(transaction, getPrivateKey())
+            signed_tx = web3.eth.account.sign_transaction(transaction, getPrivateKey(0))
 
             #  submit the tx
             tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)

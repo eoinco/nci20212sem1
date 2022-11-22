@@ -10,15 +10,15 @@ from hdwallet.utils import generate_mnemonic
 from typing import Optional
 from decouple import config
 
-def getPrivateKey():
+def getPrivateKey(accountNumber):
     mnemonic = config('SEED_PHRASE')
     myWallet: BIP44HDWallet = BIP44HDWallet(cryptocurrency=EthereumMainnet)
     myWallet.from_mnemonic(
         mnemonic=mnemonic, language="english", passphrase=""
     )
-
+    
     myWallet.clean_derivation()
-    path = "m/44'/60'/0'/0/0"
+    path = "m/44'/60'/0'/0/" + str(accountNumber)
     # path = "m/44'/60'/0'/0/1" Account 2 in metamask
     myWallet.from_path(path=path)
 
